@@ -1,0 +1,11 @@
+# Datos descargados: pesan mucho y se pueden volver a descargar
+data/
+
+# Entorno virtual: lo crea uv y se regenera con uv sync
+.venv/
+
+# Ficheros precompilados de Python: se regeneran solos
+__pycache__/
+
+# Contraseñas y claves: nunca deben subirse
+.env
