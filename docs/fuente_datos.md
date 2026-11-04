@@ -64,7 +64,10 @@ Documentación:
 ## 8. Dudas pendientes
 
 - ¿Las licitaciones de Galicia (Xunta y concellos) están en este conjunto o llegan por agregación? Comprobar en el paso 1.3 con datos reales.
-- ¿Cuántas licitaciones hay en un mes y en un año? Medirlo al descargar octubre de 2026.
+- Octubre de 2026: ZIP de 184 MB, 124 ficheros, hasta unas 62.000 entradas (no licitaciones).
+
+- ¿Cuántas licitaciones hay en un año? Pendiente de medir.
+
 
 Preguntas que el proyecto debería responder:
 
