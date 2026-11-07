@@ -32,3 +32,10 @@
 - Ejemplo: Consejo de Administración de ICEX España Exportación e Inversiones, E.P.E.
 - NIF: `entry/cac-place-ext:ContractFolderStatus/cac-place-ext:LocatedContractingParty/cac:Party/cac:PartyIdentification/cbc:ID` (el que tiene `schemeName="NIF"`). Ejemplo: Q2891001F
 - Nota: uso PartyName porque es el nombre oficial del organismo (Contact puede ser una persona o departamento). El NIF funciona como clave primaria: identifica al órgano aunque el nombre se escriba distinto.
+
+## Adjudicatario
+
+- Ruta: `entry/cac-place-ext:ContractFolderStatus/cac:TenderResult/cac:WinningParty/cac:PartyName/cbc:Name`
+- Ejemplo: CAJA RURAL DE SORIA S.C.C.
+- NIF: `entry/cac-place-ext:ContractFolderStatus/cac:TenderResult/cac:WinningParty/cac:PartyIdentification/cbc:ID`. Ejemplo: F42001255
+- Nota: solo existe en licitaciones adjudicadas (estado ADJ o RES). En las publicadas (PUB) no aparece.
