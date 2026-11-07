@@ -19,3 +19,9 @@
 - Ruta: `entry/cac-place-ext:ContractFolderStatus/cac:ProcurementProject/cac:BudgetAmount/cbc:TaxExclusiveAmount`
 - Ejemplo: 157500
 - Nota: uso el importe sin IVA porque el IVA varía según el contrato y así los importes son comparables. También existen TotalAmount (con IVA) y EstimatedOverallContractAmount (valor estimado), que usaré en el nivel 5.
+
+## Código CPV
+
+- Ruta: `entry/cac-place-ext:ContractFolderStatus/cac:ProcurementProject/cac:RequiredCommodityClassification/cbc:ItemClassificationCode`
+- Ejemplo: 72600000
+- Nota: puede haber más de un CPV por licitación (1642 en 499 entradas). En el nivel 1 me quedo con el primero.
