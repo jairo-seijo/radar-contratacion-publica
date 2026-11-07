@@ -13,3 +13,9 @@
 
 - Ruta: `entry/cac-place-ext:ContractFolderStatus/cac:ProcurementProject/cbc:Name`
 - Ejemplo: Contratación de una asistencia técnica que...
+
+## Importe
+
+- Ruta: `entry/cac-place-ext:ContractFolderStatus/cac:ProcurementProject/cac:BudgetAmount/cbc:TaxExclusiveAmount`
+- Ejemplo: 157500
+- Nota: uso el importe sin IVA porque el IVA varía según el contrato y así los importes son comparables. También existen TotalAmount (con IVA) y EstimatedOverallContractAmount (valor estimado), que usaré en el nivel 5.
