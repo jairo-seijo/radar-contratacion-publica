@@ -25,3 +25,10 @@
 - Ruta: `entry/cac-place-ext:ContractFolderStatus/cac:ProcurementProject/cac:RequiredCommodityClassification/cbc:ItemClassificationCode`
 - Ejemplo: 72600000
 - Nota: puede haber más de un CPV por licitación (1642 en 499 entradas). En el nivel 1 me quedo con el primero.
+
+## Órgano de contratación
+
+- Ruta: `entry/cac-place-ext:ContractFolderStatus/cac-place-ext:LocatedContractingParty/cac:Party/cac:PartyName/cbc:Name`
+- Ejemplo: Consejo de Administración de ICEX España Exportación e Inversiones, E.P.E.
+- NIF: `entry/cac-place-ext:ContractFolderStatus/cac-place-ext:LocatedContractingParty/cac:Party/cac:PartyIdentification/cbc:ID` (el que tiene `schemeName="NIF"`). Ejemplo: Q2891001F
+- Nota: uso PartyName porque es el nombre oficial del organismo (Contact puede ser una persona o departamento). El NIF funciona como clave primaria: identifica al órgano aunque el nombre se escriba distinto.
