@@ -50,3 +50,9 @@
 
 - Ruta: `entry/updated`
 - Ejemplo: 2026-10-01T12:56:14.120+02:00
+
+## Casos raros
+
+- Lotes: hay 312 `cac:ProcurementProjectLot` en el fichero. Cuelgan de `ContractFolderStatus`, al mismo nivel que `ProcurementProject`. Mis rutas de objeto, importe y CPV leen el `ProcurementProject` general, es decir, los datos de la licitación completa.
+- Varios adjudicatarios: hay 272 `TenderResult` para 213 licitaciones adjudicadas o resueltas (87 ADJ + 126 RES). Una licitación puede tener varios ganadores, uno por lote. En el nivel 1 me quedo con el primero; en el nivel 2 irán en `fact_adjudicacion` (una fila por lote adjudicado).
+- Campos vacíos: en las licitaciones publicadas (PUB) no hay adjudicatario. El parser tendrá que devolver `None` en vez de romperse (paso 1.6).
