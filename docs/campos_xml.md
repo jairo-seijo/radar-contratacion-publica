@@ -39,3 +39,13 @@
 - Ejemplo: CAJA RURAL DE SORIA S.C.C.
 - NIF: `entry/cac-place-ext:ContractFolderStatus/cac:TenderResult/cac:WinningParty/cac:PartyIdentification/cbc:ID`. Ejemplo: F42001255
 - Nota: solo existe en licitaciones adjudicadas (estado ADJ o RES). En las publicadas (PUB) no aparece.
+
+## Id de la entrada
+
+- Ruta: `entry/id`
+- Ejemplo: https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/20497159
+
+## Fecha de actualización
+
+- Ruta: `entry/updated`
+- Ejemplo: 2026-10-01T12:56:14.120+02:00
