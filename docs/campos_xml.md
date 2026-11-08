@@ -8,6 +8,7 @@
 
 - Ruta: `entry/cac-place-ext:ContractFolderStatus/cbc:ContractFolderID`
 - Ejemplo: 117/2026
+- Nota: el expediente puede no ser unico porque cada organismo numera sus expedientes por su cuenta, asique usaremos la combinacion de NIF del organo + expediente.
 
 ## Objeto del contrato
 
