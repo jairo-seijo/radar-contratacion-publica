@@ -13,3 +13,6 @@ print(raiz.tag)
 entradas = raiz.findall("atom:entry", NS)
 
 print(len(entradas))
+
+for entrada in entradas[:10]:
+     print(entrada.findtext("atom:title", namespaces =NS))
