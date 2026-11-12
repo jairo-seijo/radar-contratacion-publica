@@ -53,9 +53,9 @@ La página publica seis conjuntos, cada uno con un tipo de contratación distint
 - Encargos a medios propios (desde 2021): trabajos que la administración encarga a sus propias empresas públicas, sin licitar.
 - Consultas preliminares de mercado (desde 2022): consultas a empresas antes de preparar una licitación.
 - Perfiles de los órganos de contratación (Excel): la lista de organismos con su NIF, tipo de administración y código postal. Útil para `dim_organo` en el nivel 2.
+- En un fichero de octubre de 2026 (499 licitaciones) aparecen unas 10 de concellos gallegos y alguna de la Xunta. Pendiente de cuantificar en el paso 1.9
 
 Documentación:
-
 - Documento resumen de los campos (diciembre de 2023; puede no estar actualizado).
 - Especificación técnica del formato de sindicación (PDF): se usará en el paso 1.4.
 - Página oficial: https://www.hacienda.gob.es/es-ES/GobiernoAbierto/Datos%20Abiertos/Paginas/licitaciones_plataforma_contratacion.aspx
