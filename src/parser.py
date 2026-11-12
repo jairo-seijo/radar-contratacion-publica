@@ -2,6 +2,10 @@ from lxml import etree
 
 NS ={ 
     "atom": "http://www.w3.org/2005/Atom",
+    "cbc": "urn:dgpe:names:draft:codice:schema:xsd:CommonBasicComponents-2",
+    "cac": "urn:dgpe:names:draft:codice:schema:xsd:CommonAggregateComponents-2",
+    "cac-place-ext": "urn:dgpe:names:draft:codice-place-ext:schema:xsd:CommonAggregateComponents-2",   
+    
 }
 
 ruta = "data/raw/202610/licitacionesPerfilesContratanteCompleto3_20261001_201704_1.atom"
@@ -15,4 +19,9 @@ entradas = raiz.findall("atom:entry", NS)
 print(len(entradas))
 
 for entrada in entradas[:10]:
-     print(entrada.findtext("atom:title", namespaces =NS))
+     print(entrada.findtext("cac-place-ext:ContractFolderStatus/cbc:ContractFolderID",namespaces =NS))
+     print(entrada.findtext("cac-place-ext:ContractFolderStatus/cac:ProcurementProject/cbc:Name",namespaces =NS))
+     print(entrada.findtext("cac-place-ext:ContractFolderStatus/cac:ProcurementProject/cac:BudgetAmount/cbc:TaxExclusiveAmount", namespaces =NS))
+     print(entrada.findtext("cac-place-ext:ContractFolderStatus/cac:ProcurementProject/cac:RequiredCommodityClassification/cbc:ItemClassificationCode", namespaces =NS))
+     print(entrada.findtext("cac-place-ext:ContractFolderStatus/cac-place-ext:LocatedContractingParty/cac:Party/cac:PartyName/cbc:Name",namespaces =NS))
+     print(entrada.findtext("cac-place-ext:ContractFolderStatus/cac:TenderResult/cac:WinningParty/cac:PartyName/cbc:Name",namespaces =NS))
