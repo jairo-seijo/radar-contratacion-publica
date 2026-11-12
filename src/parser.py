@@ -18,10 +18,15 @@ entradas = raiz.findall("atom:entry", NS)
 
 print(len(entradas))
 
-for entrada in entradas[:10]:
-     print(entrada.findtext("cac-place-ext:ContractFolderStatus/cbc:ContractFolderID",namespaces =NS))
-     print(entrada.findtext("cac-place-ext:ContractFolderStatus/cac:ProcurementProject/cbc:Name",namespaces =NS))
-     print(entrada.findtext("cac-place-ext:ContractFolderStatus/cac:ProcurementProject/cac:BudgetAmount/cbc:TaxExclusiveAmount", namespaces =NS))
-     print(entrada.findtext("cac-place-ext:ContractFolderStatus/cac:ProcurementProject/cac:RequiredCommodityClassification/cbc:ItemClassificationCode", namespaces =NS))
-     print(entrada.findtext("cac-place-ext:ContractFolderStatus/cac-place-ext:LocatedContractingParty/cac:Party/cac:PartyName/cbc:Name",namespaces =NS))
-     print(entrada.findtext("cac-place-ext:ContractFolderStatus/cac:TenderResult/cac:WinningParty/cac:PartyName/cbc:Name",namespaces =NS))
+licitaciones = []
+for entrada in entradas: 
+     licitacion = {
+         "expediente": entrada.findtext("cac-place-ext:ContractFolderStatus/cbc:ContractFolderID",namespaces=NS),
+         "objeto_del_contrato": entrada.findtext("cac-place-ext:ContractFolderStatus/cac:ProcurementProject/cbc:Name",namespaces=NS),
+         "importe": entrada.findtext("cac-place-ext:ContractFolderStatus/cac:ProcurementProject/cac:BudgetAmount/cbc:TaxExclusiveAmount", namespaces=NS),
+         "codigo_cpv" : entrada.findtext("cac-place-ext:ContractFolderStatus/cac:ProcurementProject/cac:RequiredCommodityClassification/cbc:ItemClassificationCode", namespaces =NS),
+         "organo_de_contratacion" : entrada.findtext("cac-place-ext:ContractFolderStatus/cac-place-ext:LocatedContractingParty/cac:Party/cac:PartyName/cbc:Name",namespaces =NS),
+         "adjudicatario": entrada.findtext("cac-place-ext:ContractFolderStatus/cac:TenderResult/cac:WinningParty/cac:PartyName/cbc:Name",namespaces=NS)
+     }
+     licitaciones.append(licitacion)
+print(len(licitaciones))
