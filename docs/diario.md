@@ -13,3 +13,12 @@
 - Falló: al escribir rutas a mano me como letras del final (`ContractFolderI` en vez de `ContractFolderID`, `update` en vez de `updated`). En el código eso no da error: devuelve vacío.
 - Lo resolví: copio los nombres con Ctrl+C en vez de teclearlos y compruebo cada ruta con la barra de la extensión.
 - Aprendí: con la extensión XML veo la ruta completa haciendo clic en la línea, sin tener que subir de padre en padre a mano.
+
+## 2026-11-12 — Paso 1.5: primer script de lectura
+
+- Fechas: del 2026-11-10 al 2026-11-12
+- Hice: escribí `src/parser.py`, que lee un fichero `.atom` con lxml y saca los 6 campos de cada licitación (499 en total) usando las rutas de      `campos_xml.md`. Lo metí todo en una función, `leer_fichero(ruta)`, que devuelve una lista de diccionarios.
+- Falló: sobre todo errores de escritura: letras de más o de menos en nombres (`leer_ficheros` en vez de `leer_fichero`) y una línea en el sitio equivocado que cortaba la función en dos. Python no siempre avisa: una ruta mal escrita devuelve `None` sin dar error.
+- Lo resolví: leyendo el error por la última línea, comparando con el original y copiando los nombres con Ctrl+C en vez de teclearlos. Comprobando siempre que salen 499 fichas.
+- Aprendí: a dejar que las herramientas trabajen por mí: Shift+Alt+F para que Ruff ordene el código y Alt+Z para leer líneas largas sin desplazarme.
+- Tiempo: 2 h 10 min
