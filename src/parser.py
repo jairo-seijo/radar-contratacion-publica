@@ -7,9 +7,11 @@ NS = {
     "cac-place-ext": "urn:dgpe:names:draft:codice-place-ext:schema:xsd:CommonAggregateComponents-2",
 }
 
+PARSER_SEGURO = etree.XMLParser(resolve_entities=False, no_network=True)
+
 
 def leer_fichero(ruta):
-    arbol = etree.parse(ruta)
+    arbol = etree.parse(ruta, PARSER_SEGURO)
     raiz = arbol.getroot()
     entradas = raiz.findall("atom:entry", NS)
     licitaciones = []
