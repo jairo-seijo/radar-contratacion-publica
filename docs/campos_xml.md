@@ -51,6 +51,19 @@
 - Ruta: `entry/updated`
 - Ejemplo: 2026-10-01T12:56:14.120+02:00
 
+## Estados de la licitación
+
+Ruta: `CFS/cbc-place-ext:ContractFolderStatusCode`. Fuente: lista oficial `SyndicationContractFolderStatusCode-2.04`.
+
+| Código | Significado oficial | ¿Tiene ganador? |
+|---|---|---|
+| PRE | Anuncio previo | No |
+| PUB | En plazo | No |
+| EV | Pendiente de adjudicación | No |
+| ADJ | Adjudicada | Sí (o desierta) |
+| RES | Resuelta | Sí, o desierta / desistimiento |
+| ANUL | Anulada | No |
+
 ## Casos raros
 
 - Lotes: hay 312 `cac:ProcurementProjectLot` en el fichero. Cuelgan de `ContractFolderStatus`, al mismo nivel que `ProcurementProject`. Mis rutas de objeto, importe y CPV leen el `ProcurementProject` general, es decir, los datos de la licitación completa.
@@ -61,3 +74,4 @@
  (`CFS/cac:TenderResult/cbc:ResultCode`), comprobado en la lista oficial `TenderResultCode-2.09`:
  11 desiertas (código 3) y 2 desistimientos (código 4).
 - Rareza: 4 de ellas están en estado ADJ con resultado desierto. Limitación conocida.
+- Sin CPV: 3 de 499 (2 RES, 1 EV). Comprobada una (`2026/3002W`): no trae CPV ni en el proyecto ni en los lotes. Dato que falta en la fuente; se deja como `None`.
