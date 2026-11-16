@@ -5,6 +5,7 @@ NS = {
     "cbc": "urn:dgpe:names:draft:codice:schema:xsd:CommonBasicComponents-2",
     "cac": "urn:dgpe:names:draft:codice:schema:xsd:CommonAggregateComponents-2",
     "cac-place-ext": "urn:dgpe:names:draft:codice-place-ext:schema:xsd:CommonAggregateComponents-2",
+    "cbc-place-ext": "urn:dgpe:names:draft:codice-place-ext:schema:xsd:CommonBasicComponents-2",
 }
 
 PARSER_SEGURO = etree.XMLParser(resolve_entities=False, no_network=True)
@@ -38,6 +39,14 @@ def leer_fichero(ruta):
             ),
             "adjudicatario": entrada.findtext(
                 "cac-place-ext:ContractFolderStatus/cac:TenderResult/cac:WinningParty/cac:PartyName/cbc:Name",
+                namespaces=NS,
+            ),
+            "estado": entrada.findtext(
+                "cac-place-ext:ContractFolderStatus/cbc-place-ext:ContractFolderStatusCode",
+                namespaces=NS,
+            ),
+            "resultado": entrada.findtext(
+                "cac-place-ext:ContractFolderStatus/cac:TenderResult/cbc:ResultCode",
                 namespaces=NS,
             ),
         }
