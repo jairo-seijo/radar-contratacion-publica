@@ -22,3 +22,21 @@
 - Lo resolví: leyendo el error por la última línea, comparando con el original y copiando los nombres con Ctrl+C en vez de teclearlos. Comprobando siempre que salen 499 fichas.
 - Aprendí: a dejar que las herramientas trabajen por mí: Shift+Alt+F para que Ruff ordene el código y Alt+Z para leer líneas largas sin desplazarme.
 - Tiempo: 2 h 10 min
+
+## Paso 1.6 – Campos que faltan
+
+- Fechas: del 2026-11-15 al 2026-11-16
+- Tiempo: 3 h 15 min
+
+Qué hice:
+- Configuré el parser de lxml para que no siga entidades externas ni salga a internet (protección frente a XXE).
+- Añadí al parser el estado de la licitación y el código de resultado, y el namespace `cbc-place-ext`.
+- Medí los vacíos de todos los campos: 299 sin adjudicatario, 3 sin CPV, el resto completos.
+- Investigué 13 licitaciones adjudicadas o resueltas sin ganador: 11 desiertas y 2 desistimientos, comprobado con la lista oficial de códigos.
+- Provoqué a propósito el error de `find(...).text` para ver por qué `findtext` es más seguro.
+
+Decisión: los datos que faltan se quedan como `None`, no se rellenan con un texto inventado.
+
+Lo que más me costó: entender todo en general, porque es todo nuevo para mí.
+
+XXE: un XML de fuera con una trampa (una “entidad”, como un “ver anexo”) que hace que mi programa lea ficheros de mi ordenador o salga a internet. Mi parser no sigue esas entidades.
