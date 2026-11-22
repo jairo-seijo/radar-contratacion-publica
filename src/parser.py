@@ -1,3 +1,4 @@
+import pandas as pd
 from lxml import etree
 
 NS = {
@@ -54,7 +55,14 @@ def leer_fichero(ruta):
     return licitaciones
 
 
+def guardar_csv(licitaciones, ruta):
+    df = pd.DataFrame(licitaciones)
+    df.to_csv(ruta, index=False)
+
+
 licitaciones = leer_fichero(
     "data/raw/202610/licitacionesPerfilesContratanteCompleto3_20261001_201704_1.atom"
 )
 print(len(licitaciones))
+
+guardar_csv(licitaciones, "data/bronze/licitaciones_202610.csv")
