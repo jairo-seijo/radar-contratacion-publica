@@ -40,3 +40,20 @@ Decisión: los datos que faltan se quedan como `None`, no se rellenan con un tex
 Lo que más me costó: entender todo en general, porque es todo nuevo para mí.
 
 XXE: un XML de fuera con una trampa (una “entidad”, como un “ver anexo”) que hace que mi programa lea ficheros de mi ordenador o salga a internet. Mi parser no sigue esas entidades.
+
+## Paso 1.7 – Guardar en CSV
+
+Fechas: 2026-11-22
+Tiempo: 1 h 20 min
+
+Qué hice: pasé los datos de raw a bronze. Convertí la lista de licitaciones en una tabla con pandas (DataFrame) y la guardé en `data/bronze/licitaciones_202610.csv` con una función nueva, `guardar_csv`. Salen 499 filas y 8 columnas.
+
+Qué me costó: entender cómo encaja todo: qué hace cada línea y por qué va en ese sitio. Me lié al llamar a `guardar_csv`: primero puse `df` y luego `pd.DataFrame(...)`, cuando lo que tenía que darle era la lista (`licitaciones`) y la ruta. También me costó entender por qué algunos datos del CSV llevan comillas.
+
+Qué aprendí:
+
+- `index=False`: el índice es la numeración interna de pandas, no un dato. Si lo guardas, te sobra una columna.
+- Si un texto lleva una coma, en el CSV se partiría en dos. Las comillas lo evitan.
+- `leer_fichero` lee y entrega la información con `return`. `guardar_csv` lo guarda y listo: no tiene nada que entregar.
+- Los datos no se suben a GitHub. El `.gitignore` los deja fuera.
+- En bronze los datos van sin limpiar. Quitar saltos de línea y pasar el importe a número lo dejo para el paso 1.9.
