@@ -73,4 +73,12 @@ Preguntas que el proyecto debería responder:
 
 - ¿Qué comunidades, provincias u organismos publican más licitaciones?
 
+## 9. Descarga con código (comprobado el 22-nov-2026)
+
+- URL del ZIP mensual: `https://contrataciondelsectorpublico.gob.es/sindicacion/sindicacion_643/licitacionesPerfilesContratanteCompleto3_AAAAMM.zip` (mes con dos cifras).
+- El servidor no acepta peticiones `HEAD`: corta la conexión. Hay que usar `GET` (con `stream=True` para no cargarlo entero en memoria).
+- No envía `Content-Length` (usa `Transfer-Encoding: chunked`), así que no se sabe el tamaño antes de descargar.
+- Envía `Last-Modified` (el ZIP de octubre se generó el 1-nov-2026 a las 05:00 GMT) y `ETag`: servirán para saber si el fichero cambió sin descargarlo (nivel 4).
+- Tiempo de descarga de octubre de 2026 (185 MB): 27 min con el navegador (1.3) y unos 3 min con el script (22-nov, 23:30). Una sola medición de cada.
+
 

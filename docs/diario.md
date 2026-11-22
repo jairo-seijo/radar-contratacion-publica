@@ -57,3 +57,13 @@ Qué aprendí:
 - `leer_fichero` lee y entrega la información con `return`. `guardar_csv` lo guarda y listo: no tiene nada que entregar.
 - Los datos no se suben a GitHub. El `.gitignore` los deja fuera.
 - En bronze los datos van sin limpiar. Quitar saltos de línea y pasar el importe a número lo dejo para el paso 1.9.
+
+## Paso 1.8 – Descarga automática (en curso)
+
+### Notas de la sesión del 22-nov
+
+- Hecho: `src/downloader.py` descarga el ZIP de octubre de 2026 (185 MB en unos 3 minutos) y lo guarda en `data/raw/`. Comprobado con `sha256sum`: es idéntico byte a byte al que bajé a mano en el 1.3.
+- Qué falló: con `requests.head` el servidor cortaba la conexión (`Connection reset by peer`) sin dar código de estado.
+- Cómo se encontró: probando hipótesis de una en una y cambiando una sola cosa cada vez: repetir, mirar la URL en el navegador, cambiar el User-Agent, cambiar head por get. Causa: el servidor no acepta `head`. Con `get` + `stream=True` devuelve 200, y el User-Agent no hace falta.
+- Lo que más me costó: entender cómo hacerlo, porque había muchas cosas nuevas a la vez.
+- Lo que más me gustó: ver todo lo que se podrá hacer con esto.
