@@ -80,5 +80,5 @@ Preguntas que el proyecto debería responder:
 - No envía `Content-Length` (usa `Transfer-Encoding: chunked`), así que no se sabe el tamaño antes de descargar.
 - Envía `Last-Modified` (el ZIP de octubre se generó el 1-nov-2026 a las 05:00 GMT) y `ETag`: servirán para saber si el fichero cambió sin descargarlo (nivel 4).
 - Tiempo de descarga de octubre de 2026 (185 MB): 27 min con el navegador (1.3) y unos 3 min con el script (22-nov, 23:30). Una sola medición de cada.
-
+- Si el fichero pedido no existe, el servidor responde **200** con una página HTML de error (`Content-Type: text/html; charset=UTF-8`) y un mensaje engañoso ("Su certificado no está autorizado…"). No da un 404. Por eso el downloader comprueba que `Content-Type` sea `application/zip` antes de guardar (comprobado el 23-nov-2026 pidiendo `203012`).
 
