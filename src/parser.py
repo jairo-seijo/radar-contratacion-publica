@@ -60,9 +60,4 @@ def guardar_csv(licitaciones, ruta):
     df.to_csv(ruta, index=False)
 
 
-licitaciones = leer_fichero(
-    "data/raw/202610/licitacionesPerfilesContratanteCompleto3_20261001_201704_1.atom"
-)
-print(len(licitaciones))
 
-guardar_csv(licitaciones, "data/bronze/licitaciones_202610.csv")

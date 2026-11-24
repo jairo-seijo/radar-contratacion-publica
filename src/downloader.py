@@ -3,6 +3,8 @@ from pathlib import Path
 
 import requests
 
+from parser import guardar_csv, leer_fichero
+
 
 def ruta_del_zip(anio_mes):
     return f"data/raw/licitaciones_{anio_mes}.zip"
@@ -32,5 +34,16 @@ def descomprimir_zip(anio_mes):
         archivo_zip.extractall(carpeta)
 
 
+def leer_mes(anio_mes):
+    carpeta = Path(f"data/raw/{anio_mes}")
+    licitaciones = []
+    for ruta_atom in sorted(carpeta.glob("*.atom")):
+        licitaciones.extend(leer_fichero(ruta_atom))
+    return licitaciones
+
+
 descargar_zip("202610")
 descomprimir_zip("202610")
+licitaciones = leer_mes("202610")
+print(len(licitaciones))
+guardar_csv(licitaciones, "data/bronze/licitaciones_202610.csv")
