@@ -1,3 +1,4 @@
+import zipfile
 from pathlib import Path
 
 import requests
@@ -18,6 +19,14 @@ def descargar_zip(anio_mes):
     with open(ruta, "wb") as fichero:
         for trozo in respuesta.iter_content(chunk_size=1024 * 1024):  # noqa: FURB122
             fichero.write(trozo)
+            
+            
+def descomprimir_zip(anio_mes):
+    ruta_zip = f"data/raw/licitaciones_{anio_mes}.zip"
+    carpeta = f"data/raw/{anio_mes}"
+    with zipfile.ZipFile(ruta_zip) as archivo_zip:
+        archivo_zip.extractall(carpeta)
 
 
 descargar_zip("202610")
+descomprimir_zip("202610")
