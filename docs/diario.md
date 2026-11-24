@@ -58,12 +58,45 @@ Qué aprendí:
 - Los datos no se suben a GitHub. El `.gitignore` los deja fuera.
 - En bronze los datos van sin limpiar. Quitar saltos de línea y pasar el importe a número lo dejo para el paso 1.9.
 
-## Paso 1.8 – Descarga automática (en curso)
+## Paso 1.8 – Descarga automática
 
-### Notas de la sesión del 22-nov
+Fechas: 2026-11-22 a 2026-11-24
+Tiempo: 4 h
 
-- Hecho: `src/downloader.py` descarga el ZIP de octubre de 2026 (185 MB en unos 3 minutos) y lo guarda en `data/raw/`. Comprobado con `sha256sum`: es idéntico byte a byte al que bajé a mano en el 1.3.
-- Qué falló: con `requests.head` el servidor cortaba la conexión (`Connection reset by peer`) sin dar código de estado.
-- Cómo se encontró: probando hipótesis de una en una y cambiando una sola cosa cada vez: repetir, mirar la URL en el navegador, cambiar el User-Agent, cambiar head por get. Causa: el servidor no acepta `head`. Con `get` + `stream=True` devuelve 200, y el User-Agent no hace falta.
-- Lo que más me costó: entender cómo hacerlo, porque había muchas cosas nuevas a la vez.
-- Lo que más me gustó: ver todo lo que se podrá hacer con esto.
+### Qué hice
+
+- `src/downloader.py` hace todo el mes con un solo comando: descarga el ZIP, comprueba que es un ZIP, lo descomprime, lee los 124 `.atom` con el parser y guarda el CSV en bronze.
+- Octubre de 2026: 185 MB de ZIP → 1,7 GB de XML → 61.638 filas → CSV de 16 MB.
+- Si el ZIP ya está en `data/raw/`, no lo vuelve a descargar.
+- La descarga es idéntica byte a byte a la oficial (comprobado con `sha256sum`).
+- El parser pasó a ser solo una "caja de herramientas": el trabajo lo hace el downloader.
+
+### Qué falló y cómo lo resolví
+
+- **`requests.head` → el servidor colgaba** (`Connection reset by peer`). Probé hipótesis de una en una: repetir, la URL en el navegador, el User-Agent, `head` por `get`. Causa: el servidor no acepta `head`. Solución: `get` con `stream=True`.
+- **Con un mes que no existe, el servidor responde 200 y manda una página de error HTML.** Lo descubrí provocando el error con `203012`. Solución: comprobar que el `Content-Type` sea `application/zip` y, si no, parar con `raise`.
+- **Al importar el parser salía un `499` que nadie pedía.** Había código suelto al final de `parser.py`. Al importar un fichero, Python lo ejecuta entero. Solución: dejar en el parser solo funciones.
+
+### Qué aprendí
+
+1. Cuando algo falla: revisar varias posibilidades, de una en una, empezando por la más fácil de comprobar y cambiando una sola cosa cada vez.
+2. Un 200 no garantiza que el dato sea bueno: hay que validar lo que llega.
+3. No repetir trabajo hecho: mirar si el fichero ya existe antes de descargarlo.
+4. Cada función hace un solo trabajo: así se pueden usar, revisar y probar por separado.
+5. DRY: cada dato escrito en un solo sitio (la ruta del ZIP, en `ruta_del_zip`).
+6. Un fichero que se importa debe tener solo funciones, sin código suelto.
+7. `extend` vacía la caja en la estantería; `append` mete la caja entera.
+
+### Lo que más me costó y lo que más me gustó
+
+- Me costó y a la vez me gustó enlazar el parser con el downloader.
+- El primer día me costó entender cómo hacerlo, porque había muchas cosas nuevas a la vez.
+- Me gustó ver todo lo que se podrá hacer con esto.
+
+### Conceptos para repasar
+
+`requests.get` y `stream=True` · código de estado · cabeceras (`Content-Type`) · `with open(..., "wb")` · `iter_content` · f-string · `return` y `return valor` · `Path(...).exists()` · `zipfile` y `extractall` · `glob("*.atom")` y `sorted` · `extend` frente a `append` · importar mis propias funciones · prefijos `feat:`, `fix:`, `chore:`, `refactor:`.
+
+### Cómo lo contaría en una entrevista
+
+"Automaticé la ingesta: el downloader descarga el ZIP mensual, valida que sea un ZIP porque la fuente devuelve 200 con páginas de error, evita descargas repetidas y procesa unos 1,7 GB de XML hasta un CSV de unas 62.000 filas. Limitación conocida: hay licitaciones repetidas por versiones, que resolveré en el nivel 2."
