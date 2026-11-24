@@ -4,8 +4,12 @@ from pathlib import Path
 import requests
 
 
+def ruta_del_zip(anio_mes):
+    return f"data/raw/licitaciones_{anio_mes}.zip"
+
+
 def descargar_zip(anio_mes):
-    ruta = f"data/raw/licitaciones_{anio_mes}.zip"
+    ruta = ruta_del_zip(anio_mes)
     if Path(ruta).exists():
         print(f"{ruta} ya existe, no se descarga")
         return
@@ -19,10 +23,10 @@ def descargar_zip(anio_mes):
     with open(ruta, "wb") as fichero:
         for trozo in respuesta.iter_content(chunk_size=1024 * 1024):  # noqa: FURB122
             fichero.write(trozo)
-            
-            
+
+
 def descomprimir_zip(anio_mes):
-    ruta_zip = f"data/raw/licitaciones_{anio_mes}.zip"
+    ruta_zip = ruta_del_zip(anio_mes)
     carpeta = f"data/raw/{anio_mes}"
     with zipfile.ZipFile(ruta_zip) as archivo_zip:
         archivo_zip.extractall(carpeta)
