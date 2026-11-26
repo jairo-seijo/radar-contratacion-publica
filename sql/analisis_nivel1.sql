@@ -5,7 +5,7 @@
 SELECT count(*) AS total_licitaciones FROM 'data/bronze/licitaciones_202610.csv';
 
 -- 2. ¿Qué 10 órganos publican más licitaciones?
-SELECT organo_de_contratacion, count (*) AS num_licitaciones
+SELECT organo_de_contratacion, count(*) AS num_licitaciones
 FROM 'data/bronze/licitaciones_202610.csv'
 GROUP BY organo_de_contratacion
 ORDER BY num_licitaciones DESC
